@@ -14,7 +14,7 @@
 
       gravity: {
         x: 0,
-        y: -100,
+        y: -20,
         z: 0
       },
 
@@ -25,7 +25,7 @@
       }
     });
 
-    // assets from https://github.com/stemkoski/stemkoski.github.com 
+    // assets from https://github.com/stemkoski/stemkoski.github.com
     const custom = new WHS.Skybox({
         skyType: 'box',
         imgSuffix: '.jpg',
@@ -68,31 +68,27 @@
       }
     }).addTo(GAME);
 
-    const plane = new WHS.Plane({
-      geometry: {
-        width: 25,
-        height: 25
-      },
-
-      mass: 0,
-
-      material: {
-        color: 0xff0000,
-        kind: 'basic'
-      },
-
-      pos: {
-        x: 0,
-        y: 0,
-        z: 0
-      },
-
-      rot: {
-        x: -Math.PI / 2
-      }
+    const box = new WHS.Box({
+        geometry: {
+            width: 10,
+            height: 10,
+            depth: 10
+        },
+        mass: 0,
+        softbody: false,
+        material: {
+            kind: 'basic',
+            color: 0xffff00
+        },
+        pos: {
+            x: 0,
+            y: 0,
+            z: 0
+        }
     });
 
-    GAME.add(plane);
+    GAME.add(box);
+
     GAME.start();
 
     GAME.setControls(WHS.orbitControls());
