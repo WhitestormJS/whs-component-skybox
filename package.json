@@ -1,6 +1,6 @@
 {
   "name": "whs-component-skybox",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Skybox component",
   "main": "lib/index.js",
   "scripts": {
