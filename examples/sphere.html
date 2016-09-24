@@ -66,26 +66,24 @@
       }
     }).addTo(GAME);
 
-    const box = new WHS.Box({
+    const sphere = new WHS.Sphere({
         geometry: {
-            width: 10,
-            height: 10,
-            depth: 10
-        },
-        mass: 0,
-        softbody: false,
-        material: {
-            kind: 'basic',
-            color: 0xffff00
-        },
-        pos: {
-            x: 0,
-            y: 0,
-            z: 0
-        }
-    });
+                 radius:6
+             },
+             mass: 0,
+             softbody: false,
+             material: {
+                 kind: 'basic',
+                 color: 0xD9AD8B
+             },
+             pos: {
+                 x: 0,
+                 y: 0,
+                 z: 0
+             }
+         });
 
-    GAME.add(box);
+    GAME.add(sphere);
     GAME.start();
 
     GAME.setControls(WHS.orbitControls());
