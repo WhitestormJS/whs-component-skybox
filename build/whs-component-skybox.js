@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.default = undefined;
 	
@@ -99,130 +99,84 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//https://github.com/WhitestormJS/whitestorm.js/blob/dev/src/framework/extras/Skybox.js
-	
 	var Skybox = function (_Shape) {
-	  (0, _inherits3.default)(Skybox, _Shape);
+	    (0, _inherits3.default)(Skybox, _Shape);
 	
-	  function Skybox() {
-	    var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	    (0, _classCallCheck3.default)(this, Skybox);
+	    function Skybox() {
+	        var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	        (0, _classCallCheck3.default)(this, Skybox);
 	
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Skybox.__proto__ || Object.getPrototypeOf(Skybox)).call(this, params, 'skybox'));
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (Skybox.__proto__ || Object.getPrototypeOf(Skybox)).call(this, params, 'skybox'));
 	
-	    (0, _whitestormjs.extend)(params, {
-	      skyType: 'box',
-	      imgSuffix: '.png',
-	      radius: 10,
-	      fog: true,
-	      path: ''
-	    });
+	        (0, _whitestormjs.extend)(params, {
+	            skyType: 'box',
+	            imgSuffix: '.png',
+	            radius: 10,
+	            fog: true,
+	            path: ''
+	        });
 	
-	    _this.build(params);
-	    (0, _get3.default)(Skybox.prototype.__proto__ || Object.getPrototypeOf(Skybox.prototype), 'wrap', _this).call(_this);
-	    return _this;
-	  }
+	        _this.build(params);
+	        (0, _get3.default)(Skybox.prototype.__proto__ || Object.getPrototypeOf(Skybox.prototype), 'wrap', _this).call(_this);
+	        return _this;
+	    }
 	
-	  (0, _createClass3.default)(Skybox, [{
-	    key: 'build',
-	    value: function build() {
-	      var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    (0, _createClass3.default)(Skybox, [{
+	        key: 'build',
+	        value: function build() {
+	            var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	
 	
-	      var skyGeometry = void 0,
-	          skyMat = void 0;
+	            var skyGeometry = void 0,
+	                skyMat = void 0;
 	
-	      switch (params.skyType) {
-	        case 'box':
-	          {
-	            var directions = ['xpos', 'xneg', 'ypos', 'yneg', 'zpos', 'zneg'],
-	                matArray = [];
+	            switch (params.skyType) {
+	                case 'box':
+	                    {
+	                        var directions = ['xpos', 'xneg', 'ypos', 'yneg', 'zpos', 'zneg'],
+	                            matArray = [];
 	
-	            skyGeometry = new THREE.CubeGeometry(params.radius, params.radius, params.radius);
+	                        skyGeometry = new THREE.CubeGeometry(params.radius, params.radius, params.radius);
 	
-	            for (var i = 0; i < 6; i++) {
-	              matArray.push(new THREE.MeshBasicMaterial({
-	                map: (0, _whitestormjs.texture)(params.path + directions[i] + params.imgSuffix, false),
-	                side: THREE.BackSide,
-	                fog: params.fog
-	              }));
+	                        for (var i = 0; i < 6; i++) {
+	                            matArray.push(new THREE.MeshBasicMaterial({
+	                                map: (0, _whitestormjs.texture)(params.path + directions[i] + params.imgSuffix, false),
+	                                side: THREE.BackSide,
+	                                fog: params.fog
+	                            }));
+	                        }
+	
+	                        skyMat = new THREE.MeshFaceMaterial(matArray);
+	
+	                        break;
+	                    }
+	
+	                case 'sphere':
+	                    {
+	                        skyGeometry = new THREE.SphereGeometry(params.radius / 2, 60, 40);
+	                        skyMat = new THREE.MeshBasicMaterial({
+	                            map: (0, _whitestormjs.texture)(params.path + params.imgSuffix, false),
+	                            side: THREE.BackSide,
+	                            fog: params.fog
+	                        });
+	
+	                        break;
+	                    }
+	                default:
 	            }
 	
-	            skyMat = new THREE.MeshFaceMaterial(matArray);
+	            var mesh = new THREE.Mesh(skyGeometry, skyMat);
+	            mesh.renderDepth = 1000.0;
 	
-	            break;
-	          }
-	
-	        case 'sphere':
-	          {
-	            skyGeometry = new THREE.SphereGeometry(params.radius / 2, 60, 40);
-	            skyMat = new THREE.MeshBasicMaterial({
-	              map: (0, _whitestormjs.texture)(params.path + params.imgSuffix, false),
-	              side: THREE.BackSide,
-	              fog: params.fog
-	            });
-	
-	            break;
-	          }
-	        default:
-	      }
-	
-	      var mesh = new THREE.Mesh(skyGeometry, skyMat);
-	      mesh.renderDepth = 1000.0;
-	
-	      (0, _set3.default)(Skybox.prototype.__proto__ || Object.getPrototypeOf(Skybox.prototype), 'native', mesh, this);
-	
-	      // const _Mesh = this.physics ? Physijs.SphereMesh : THREE.Mesh,
-	      //   material = new THREE.MeshLambertMaterial({color: 0x00ff00}),
-	      //   geometry = new THREE.SphereGeometry(
-	      //     params.geometry.radius,
-	      //     params.geometry.segmentA * 2,
-	      //     params.geometry.segmentB * 2
-	      //   ),
-	      //   gShape = geometry.clone();
-	      //
-	      // const anim = new Loop((t) => {
-	      //   const timeA = Math.sin(t.getElapsedTime() / 1.5 * 180 * Math.PI / 180);
-	      //
-	      //   for (let i = 0; i < gShape.vertices.length; i++) {
-	      //     const v1 = gShape.vertices[i];
-	      //     const v2 = geometry.vertices[i];
-	      //
-	      //     const c = Math.sqrt(v1.x * v1.x + v1.z * v1.z);
-	      //     const d = c + Math.sin(Math.abs(Math.asin(v1.z / c) / 2 * Math.PI * 180)) / 4 * timeA;
-	      //
-	      //     v2.x = v1.x * d / c;
-	      //     v2.z = v1.z * d / c;
-	      //   }
-	      //
-	      //   geometry.verticesNeedUpdate = true;
-	      // });
-	      //
-	      // this.run = () => {
-	      //   anim.start(this.parent);
-	      // };
-	      //
-	      // setInterval(() => {
-	      //   anim.clock.elapsedTime = 0;
-	      // }, 3000);
-	      //
-	      // return new Promise((resolve) => {
-	      //   this.native = new _Mesh(
-	      //     geometry,
-	      //     material,
-	      //     this.params
-	      //   );
-	      //
-	      //   resolve();
-	      // });
-	    }
-	  }, {
-	    key: 'clone',
-	    value: function clone() {
-	      return new Skybox(this.params).copy(this);
-	    }
-	  }]);
-	  return Skybox;
+	            (0, _set3.default)(Skybox.prototype.__proto__ || Object.getPrototypeOf(Skybox.prototype), 'native', mesh, this);
+	        }
+	    }, {
+	        key: 'clone',
+	        value: function clone() {
+	            return new Skybox(this.params).copy(this);
+	        }
+	    }]);
+	    return Skybox;
 	}(_whitestormjs.Shape);
 	
 	exports.default = Skybox;

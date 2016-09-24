@@ -26,7 +26,7 @@
     });
 
     // assets from https://github.com/stemkoski/stemkoski.github.com
-    const custom = new WHS.Skybox({
+    const skybox = new WHS.Skybox({
         skyType: 'box',
         imgSuffix: '.jpg',
         radius: 1000,
@@ -34,9 +34,7 @@
         path: 'assets/DarkSea-'
     });
 
-    console.log(custom);
-
-    custom.addTo(GAME);
+    skybox.addTo(GAME);
 
     new WHS.SpotLight({
       light: {
