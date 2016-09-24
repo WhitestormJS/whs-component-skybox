@@ -25,22 +25,18 @@
       }
     });
 
+    // http://macsix.deviantart.com/art/Anvil-Spherical-HDRI-Panorama-Skybox-416317312
     const custom = new WHS.Skybox({
-      geometry: {
-        radius: 3
-      },
-
-      mass: 10,
-
-      pos: {
-        x: 0,
-        y: 100,
-        z: 0
-      }
+        skyType: 'sphere',
+        imgSuffix: '.jpg',
+        radius: 100,
+        fog: false,
+        path: 'assets/sphere'
     });
 
+    console.log(custom);
+
     custom.addTo(GAME);
-    custom.run();
 
     new WHS.SpotLight({
       light: {
@@ -74,8 +70,8 @@
 
     const plane = new WHS.Plane({
       geometry: {
-        width: 250,
-        height: 250
+        width: 25,
+        height: 25
       },
 
       mass: 0,
