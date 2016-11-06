@@ -8,7 +8,7 @@
     <script src="../vendor/whitestorm.js"></script>
     <script src="../build/whs-component-skybox.js"></script>
     <script type="text/javascript">
-    const GAME = new WHS.World({
+    const world = new WHS.World({
       stats: 'fps', // fps, ms, mb
       autoresize: "window",
 
@@ -27,14 +27,14 @@
 
     // assets from https://github.com/stemkoski/stemkoski.github.com
     const skybox = new WHS.Skybox({
-        skyType: 'box',
-        imgSuffix: '.jpg',
-        radius: 1000,
-        fog: false,
-        path: 'assets/DarkSea-'
+      skyType: 'box',
+      imgSuffix: '.jpg',
+      radius: 1000,
+      fog: false,
+      path: 'assets/DarkSea-'
     });
 
-    skybox.addTo(GAME);
+    skybox.addTo(world);
 
     new WHS.SpotLight({
       light: {
@@ -46,13 +46,13 @@
       pos: {
         z: 10
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     new WHS.AmbientLight({
       light: {
         intensity: 0.3
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     new WHS.SpotLight({
       light: {
@@ -64,32 +64,23 @@
       pos: {
         z: -10
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     const box = new WHS.Box({
-        geometry: {
-            width: 10,
-            height: 10,
-            depth: 10
-        },
-        mass: 0,
-        softbody: false,
-        material: {
-            kind: 'basic',
-            color: 0xffff00
-        },
-        pos: {
-            x: 0,
-            y: 0,
-            z: 0
-        }
+      geometry: [10, 10, 10],
+
+      mass: 0,
+
+      material: {
+        kind: 'basic',
+        color: 0xffff00
+      },
     });
 
-    GAME.add(box);
+    box.addTo(world);
 
-    GAME.start();
-
-    GAME.setControls(WHS.orbitControls());
+    world.start();
+    world.setControls(new WHS.OrbitControls());
 
     </script>
   </body>

@@ -8,7 +8,7 @@
     <script src="../vendor/whitestorm.js"></script>
     <script src="../build/whs-component-skybox.js"></script>
     <script type="text/javascript">
-    const GAME = new WHS.World({
+    const world = new WHS.World({
       stats: 'fps', // fps, ms, mb
       autoresize: "window",
 
@@ -27,14 +27,14 @@
 
     // http://macsix.deviantart.com/art/Anvil-Spherical-HDRI-Panorama-Skybox-416317312
     const skybox = new WHS.Skybox({
-        skyType: 'sphere',
-        imgSuffix: '.jpg',
-        radius: 100,
-        fog: false,
-        path: 'assets/sphere'
+      skyType: 'sphere',
+      imgSuffix: '.jpg',
+      radius: 100,
+      fog: false,
+      path: 'assets/sphere'
     });
 
-    skybox.addTo(GAME);
+    skybox.addTo(world);
 
     new WHS.SpotLight({
       light: {
@@ -43,16 +43,16 @@
         intensity: 2
       },
 
-      pos: {
+      position: {
         z: 10
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     new WHS.AmbientLight({
       light: {
         intensity: 0.3
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     new WHS.SpotLight({
       light: {
@@ -61,32 +61,28 @@
         intensity: 2
       },
 
-      pos: {
+      position: {
         z: -10
       }
-    }).addTo(GAME);
+    }).addTo(world);
 
     const sphere = new WHS.Sphere({
-        geometry: {
-                 radius:6
-             },
-             mass: 0,
-             softbody: false,
-             material: {
-                 kind: 'basic',
-                 color: 0xD9AD8B
-             },
-             pos: {
-                 x: 0,
-                 y: 0,
-                 z: 0
-             }
-         });
+      geometry: {
+        radius:6
+      },
 
-    GAME.add(sphere);
-    GAME.start();
+      mass: 0,
 
-    GAME.setControls(WHS.orbitControls());
+      material: {
+        kind: 'basic',
+        color: 0xD9AD8B
+      },
+    });
+
+    world.add(sphere);
+    world.start();
+
+    world.setControls(new WHS.OrbitControls());
 
     </script>
   </body>
