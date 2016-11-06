@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _inherits3.default)(Skybox, _Shape);
 	
 	    function Skybox() {
-	        var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	        var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	        (0, _classCallCheck3.default)(this, Skybox);
 	
 	        var _this = (0, _possibleConstructorReturn3.default)(this, (Skybox.__proto__ || Object.getPrototypeOf(Skybox)).call(this, params, 'skybox'));
@@ -124,7 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _createClass3.default)(Skybox, [{
 	        key: 'build',
 	        value: function build() {
-	            var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	
 	
 	            var skyGeometry = void 0,
@@ -529,14 +529,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _symbol2 = _interopRequireDefault(_symbol);
 	
-	var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj; };
+	var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
 	  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
 	} : function (obj) {
-	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 	};
 
 /***/ },
